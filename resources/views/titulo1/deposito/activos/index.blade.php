@@ -16,39 +16,39 @@
         @endif
 
 
-        <a href="{{ url('itemsgroups/create') }}" class="btn btn-success">Agregar nuevo grupo</a>
-        <hr>
+
+        <br>
+        <a href="{{ url('grupos/create') }}" class="btn btn-success">Agregar nuevo grupo</a>
+        <br>
         <br>
         <table id="table_id" class="table table-light">
             <thead class="thead-light">
                 <tr>
                     <th>#</th>
-                    <th>Nombre</th>
-                    <th>Detalle</th>
-                    <th>Marca</th>
-                    <th>Rubro</th>
-                    <th>VAEmpresa</th>
-                    <th>SEmpresa</th>
+                    <th>Estado</th>
+                    <th>Ubicacion</th>
+                    <th>Grupo</th>
+                    <th>Precio</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($groups as $group)
+                @foreach ($activos as $activo)
                     <tr>
-                        <td>{{ $group->codigo }}</td>
+                        <td>{{ $activo->codigo }}</td>
                         {{-- <td>
                         <img class="img-thumbnail img-fluid" src="{{ asset('storage') . '/' . $empleado->Foto }}"
                             width="100" alt="">
                     </td> --}}
-                        <td>{{ $group->Nombre }}</td>
-                        <td>{{ $group->Detalle }}</td>
-                        <td>{{ $group->Marca }}</td>
-                        <td>{{ $group->Rubro }}</td>
-                        <td>{{ $group->VAEmpresa }}</td>
-                        <td>{{ $group->SEmpresa }}</td>
+                        <td>{{ $activo->estado }}</td>
+                        <td>{{ $activo->ubicacion }}</td>
+                        <td>{{ $grupos->where('Identificador', '=', 'A')->first()->Nombre }} - {{ $grupos->where('Identificador', '=', 'A')->first()->Detalle }}</td>
 
+                        {{-- @foreach ($grupos as $grupo)
+                        <td>{{ $grupos->Nombre->where('Identificador', '=', 'A') }}</td>
 
-
+                        @endforeach --}}
+                        <td>{{ $activo->precio }}</td>
 
                         <td>
 
@@ -60,13 +60,13 @@
 
                             </form> --}}
 
-                            <form action="{{ url('/activos/' . $group->codigo) }}" id="{{$group->codigo}}" method="post"
+                            <form action="{{ url('/activos/' . $activo->codigo) }}" id="{{$activo->codigo}}" method="post"
                                 class="d-inline">
                                 @csrf
                                 {{ method_field('DELETE') }}
 
                             </form>
-                            <a onclick="return deleteConfirm({{$group->codigo}})" class="btn">
+                            <a onclick="return deleteConfirm({{$activo->codigo}})" class="btn">
                                 <i data-feather="trash-2" color="red"></i>
                             </a>                           
                         </td>
@@ -75,7 +75,7 @@
                 @endforeach
             </tbody>
         </table>
-        {!! $groups->links() !!}
+        {!! $activos->links() !!}
     </div>
     <script>
         window.deleteConfirm = function(formId) {

@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Itemsgroup;
+use App\Models\Activo;
+use App\Models\Operaciones;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Http;
+use Nette\Utils\Json;
 
-class ItemsgroupController extends Controller
+class OperacionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,10 +17,16 @@ class ItemsgroupController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {  
-        $datos['groups'] = Itemsgroup::where('Identificador', '=', 'A')->paginate(20);
-        return view('titulo1.deposito.grupos.index', $datos);
-       
+    {
+        //
+        $response = Http::get('https://consumos.foodservice.com.ar/api/empresas');
+        
+        $datos['operaciones']= new Paginator(json_decode($response),10);
+        // $datos['operaciones']->nextPageUrl('hola.com');
+
+        // $datos['operaciones'] = $datos['operaciones']->forPage(2,2);
+        
+        return view('titulo2.operaciones.index', $datos);
     }
 
     /**
@@ -27,8 +37,6 @@ class ItemsgroupController extends Controller
     public function create()
     {
         //
-        return view('titulo1.deposito.grupos.create');
-
     }
 
     /**
@@ -39,31 +47,7 @@ class ItemsgroupController extends Controller
      */
     public function store(Request $request)
     {
-        $grupo = new Itemsgroup();
-        $campos = [
-            'Nombre' => 'required|string|max:100',
-            'Detalle' => 'required|string|max:100',
-            'Marca' => 'required|string|max:100',
-            'SReal' => 'required|string|max:100',
-            'SMin' => 'required|string|max:100',
-            'SMax' => 'required|string|max:100',
-            'VUActual' => 'required|string|max:100',
-
-            
-        ];
-
-        $mensaje = [
-            'required' => 'El :attribute es requerido'
-        ];
-
-        $this->validate($request, $campos, $mensaje);
-
-        $datosGrupo = request()->except('_token');
-        $datosGrupo['Identificador'] = "A";
-
-      
-        Itemsgroup::insert($datosGrupo);
-        return redirect('grupos')->with('mensaje', 'Empleado agregado con éxito');
+        //
     }
 
     /**
@@ -108,7 +92,6 @@ class ItemsgroupController extends Controller
      */
     public function destroy($id)
     {
-        Itemsgroup::destroy($id);
-        return redirect('grupos')->with('mensaje', 'Empleado boreado con éxito');
+        //
     }
 }

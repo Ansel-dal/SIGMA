@@ -16,8 +16,8 @@
             <div class="card text-white bg-primary">
                 <div class="card-header">Activos</div>
                 <div class="card-body">
-                    <p class="card-text">Consulta, alta, baja y edición de activos.</p>
-                    <a href="activos" class="btn btn-dark" style="float: right;">Ver activos</a>
+                    <p class="card-text">Consulta, alta, baja y edición de grupos de activos.</p>
+                    <a href="grupos" class="btn btn-dark" style="float: right;">Ver grupos</a>
                 </div>
             </div>
         </div>

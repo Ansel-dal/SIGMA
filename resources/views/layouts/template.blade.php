@@ -43,7 +43,7 @@
                 <ul class="nav">
                     <li class="nav-item nav-category">Proveedores</li>
                     <li class="nav-item">
-                        <a href="agenda" class="nav-link">
+                        <a href="/SIGMA/public/agenda" class="nav-link">
                             <i class="link-icon" data-feather="bookmark"></i>
                             <span class="link-title">Agenda</span>
                         </a>
@@ -51,22 +51,22 @@
 
                     <li class="nav-item nav-category">TITULO 1</li>
                     <li class="nav-item">
-                        <a href="deposito" class="nav-link">
+                        <a href="/SIGMA/public/deposito" class="nav-link">
                             <i class="link-icon" data-feather="box"></i>
                             <span class="link-title">Depósito</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="movimientos" class="nav-link">
-                            <i class="link-icon" data-feather="box"></i>
+                        <a href="/SIGMA/public/movimientos" class="nav-link">
+                            <i class="link-icon" data-feather="list"></i>
                             <span class="link-title">Movimientos</span>
                         </a>
                     </li>
 
                     <li class="nav-item nav-category">TITULO 2</li>
                     <li class="nav-item">
-                        <a href="operaciones" class="nav-link">
-                            <i class="link-icon" data-feather="box"></i>
+                        <a href="/SIGMA/public/operaciones" class="nav-link">
+                            <i class="link-icon" data-feather="server"></i>
                             <span class="link-title">Operaciones</span>
                         </a>
                     </li>
@@ -169,10 +169,9 @@
 
             <!-- partial:partials/_footer.html -->
             <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between">
-                <p class="text-muted text-center text-md-left">Copyright © 2020 <a href="index.html"
-                        target="_blank">NobleUI</a>. All rights reserved</p>
-                <p class="text-muted text-center text-md-left mb-0 d-none d-md-block">Handcrafted With <i
-                        class="mb-1 text-primary ml-1 icon-small" data-feather="heart"></i></p>
+                <p class="text-muted text-center text-md-left">Copyright © 2023 <a href="http://www.foodservice.com.ar/"
+                        target="_blank">FoodService S.A.</a> All rights reserved</p>
+               
             </footer>
             <!-- partial -->
 

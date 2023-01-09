@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movimiento;
 use Illuminate\Http\Request;
 
 class MovimientoController extends Controller
@@ -14,6 +15,8 @@ class MovimientoController extends Controller
     public function index()
     {
         //
+        $datos['movimientos'] = Movimiento::paginate(20);       
+        return view('titulo1.movimientos.index', $datos);
     }
 
     /**
@@ -79,6 +82,7 @@ class MovimientoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Movimiento::destroy($id);
+        return redirect('movimientos')->with('mensaje', 'Movimiento boreado con éxito');
     }
 }

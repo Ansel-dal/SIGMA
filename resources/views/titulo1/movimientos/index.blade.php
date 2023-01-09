@@ -18,41 +18,31 @@
 
 
         <br>
-        <a href="{{ url('itemsgroups/create') }}" class="btn btn-success">Agregar nuevo grupo</a>
+        <a href="{{ url('movimiento/create') }}" class="btn btn-success">Agregar nuevo movimiento</a>
         <br>
         <br>
         <table id="table_id" class="table table-light">
             <thead class="thead-light">
                 <tr>
-                    <th>#</th>
-                    <th>Estado</th>
-                    <th>Ubicacion</th>
-                    <th>Grupo</th>
-                    <th>Precio</th>
+                    <th>N° Solicitud</th>
+                    <th>Ítem</th>
+                    <th>Salida</th>
+                    <th>Destino</th>
+                    <th>Urgencia</th>                  
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($activos as $activo)
+                @foreach ($movimientos as $movimiento)
                     <tr>
-                        <td>{{ $activo->codigo }}</td>
-                        {{-- <td>
-                        <img class="img-thumbnail img-fluid" src="{{ asset('storage') . '/' . $empleado->Foto }}"
-                            width="100" alt="">
-                    </td> --}}
-                        <td>{{ $activo->estado }}</td>
-                        <td>{{ $activo->ubicacion }}</td>
-                        <td>{{ $grupos->where('Identificador', '=', 'A')->first()->Nombre }} - {{ $grupos->where('Identificador', '=', 'A')->first()->Detalle }}</td>
-
-                        {{-- @foreach ($grupos as $grupo)
-                        <td>{{ $grupos->Nombre->where('Identificador', '=', 'A') }}</td>
-
-                        @endforeach --}}
-                        <td>{{ $activo->precio }}</td>
-
+                        <td>{{ $movimiento->id }}</td>                       
+                        <td>{{ $movimiento->bien }}</td>
+                        <td>{{ $movimiento->ubicacionanterior }}</td>
+                        <td>{{ $movimiento->destino }}</td>
+                        <td>{{ $movimiento->nivelurgencia }}</td>                        
+                        
                         <td>
-
-                            {{-- <form action="{{ url('/activos/' . $activo->codigo) }}" method="post" class="d-inline">
+                            {{-- <form action="{{ url('/movimientos/' . $movimiento->codigo) }}" method="post" class="d-inline">
                                 @csrf
                                 {{ method_field('DELETE') }}
                                 <input type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar"
@@ -60,13 +50,13 @@
 
                             </form> --}}
 
-                            <form action="{{ url('/activos/' . $activo->codigo) }}" id="{{$activo->codigo}}" method="post"
+                            <form action="{{ url('/movimientos/' . $movimiento->id) }}" id="{{$movimiento->id}}" method="post"
                                 class="d-inline">
                                 @csrf
                                 {{ method_field('DELETE') }}
 
                             </form>
-                            <a onclick="return deleteConfirm({{$activo->codigo}})" class="btn">
+                            <a onclick="return deleteConfirm({{$movimiento->id}})" class="btn">
                                 <i data-feather="trash-2" color="red"></i>
                             </a>                           
                         </td>
@@ -75,13 +65,13 @@
                 @endforeach
             </tbody>
         </table>
-        {!! $activos->links() !!}
+        {!! $movimientos->links() !!}
     </div>
     <script>
         window.deleteConfirm = function(formId) {
             Swal.fire({
                 icon: 'warning',
-                title: '¡CUIDADO! Vas a eliminar este activo.',
+                title: '¡CUIDADO! Vas a eliminar este movimiento.',
                 showDenyButton: false,
                 showCancelButton: true,
                 confirmButtonText: 'Eliminar',

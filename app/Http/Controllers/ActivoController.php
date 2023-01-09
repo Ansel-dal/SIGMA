@@ -18,7 +18,7 @@ class ActivoController extends Controller
         
         $datos['activos'] = Activo::paginate(20);       
         $datos1['grupos'] = Itemsgroup::paginate(20);       
-        return view('titulo1.activos.index', $datos, $datos1);
+        return view('titulo1.deposito.activos.index', $datos, $datos1);
     }
 
    
@@ -30,14 +30,14 @@ class ActivoController extends Controller
     public function create()
     {
         //
-        return view('titulo1.activos.create');
+        return view('titulo1.deposito.activos.create');
 
     }
     public function getbyid(int $id)
     {
         //
         $datos['activos'] = Activo::where('grupo', '=', $id)->paginate(20);
-        return view('titulo1.activos.index',$datos);
+        return view('titulo1.deposito.activos.index',$datos);
 
     }
     /**
