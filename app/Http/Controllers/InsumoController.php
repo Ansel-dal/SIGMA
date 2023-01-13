@@ -38,6 +38,23 @@ class InsumoController extends Controller
     public function store(Request $request)
     {
         //
+        $campos = [
+            'grupo' => 'required|string|max:100'
+            
+
+            
+        ];
+
+        $mensaje = [
+            'required' => 'El :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos, $mensaje);
+
+        $datosGrupo = request()->except('_token');
+      
+        Insumo::insert($datosGrupo);
+        return redirect('items');
     }
 
     /**

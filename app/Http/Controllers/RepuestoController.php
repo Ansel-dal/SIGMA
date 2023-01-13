@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Repuesto;
 use Illuminate\Http\Request;
+use Laravel\Ui\Presets\React;
 
 
 class RepuestoController extends Controller
@@ -38,6 +39,23 @@ class RepuestoController extends Controller
     public function store(Request $request)
     {
         //
+        $campos = [
+            'grupo' => 'required|string|max:100'
+            
+
+            
+        ];
+
+        $mensaje = [
+            'required' => 'El :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos, $mensaje);
+
+        $datosGrupo = request()->except('_token');
+      
+        Repuesto::insert($datosGrupo);
+        return redirect('items');
     }
 
     /**

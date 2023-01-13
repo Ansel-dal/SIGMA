@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Activo;
 use App\Models\Itemsgroup;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Action;
 
 class ActivoController extends Controller
 {
@@ -17,8 +18,8 @@ class ActivoController extends Controller
     {
         
         $datos['activos'] = Activo::paginate(20);       
-        $datos1['grupos'] = Itemsgroup::paginate(20);       
-        return view('titulo1.deposito.activos.index', $datos, $datos1);
+        $datos['grupos'] = Itemsgroup::paginate(20);       
+        return view('titulo1.deposito.activos.index', $datos);
     }
 
    
@@ -37,7 +38,9 @@ class ActivoController extends Controller
     {
         //
         $datos['activos'] = Activo::where('grupo', '=', $id)->paginate(20);
-        return view('titulo1.deposito.activos.index',$datos);
+        $datos1['grupos'] = Itemsgroup::paginate(20);       
+
+        return view('titulo1.deposito.activos.index',$datos,$datos1);
 
     }
     /**
@@ -49,6 +52,24 @@ class ActivoController extends Controller
     public function store(Request $request)
     {
         //
+        $campos = [
+            'grupo' => 'required|string|max:100'
+            
+
+            
+        ];
+
+        $mensaje = [
+            'required' => 'El :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos, $mensaje);
+
+        $datosGrupo = request()->except('_token');
+        // $datosGrupo['Identificador'] = "A";
+      
+        Activo::insert($datosGrupo);
+        return redirect('items')->with('mensaje', 'Activo agregado con éxito');
     }
 
     /**
@@ -98,6 +119,6 @@ class ActivoController extends Controller
 
         // }
         Activo::destroy($id);
-        return redirect('activos')->with('mensaje', 'Empleado boreado con éxito');
+        return redirect('activos')->with('mensaje', 'Activo boreado con éxito');
     }
 }

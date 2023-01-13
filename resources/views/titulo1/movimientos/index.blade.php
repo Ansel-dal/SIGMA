@@ -18,7 +18,7 @@
 
 
         <br>
-        <a href="{{ url('movimiento/create') }}" class="btn btn-success">Agregar nuevo movimiento</a>
+        <a href="{{ url('movimientos/create') }}" class="btn btn-success">Agregar nuevo movimiento</a>
         <br>
         <br>
         <table id="table_id" class="table table-light">
@@ -28,37 +28,40 @@
                     <th>Ítem</th>
                     <th>Salida</th>
                     <th>Destino</th>
-                    <th>Urgencia</th>                  
+                    <th>Urgencia</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($movimientos as $movimiento)
                     <tr>
-                        <td>{{ $movimiento->id }}</td>                       
-                        <td>{{ $movimiento->bien }}</td>
+
+                        <td>{{ $movimiento->id }}</td>
+                        <td>{{ $grupos->where(
+                                'codigo',
+                                '=',
+                                /*
+                                Acá va el n° de grupo correspondiente al ítem del movimiento.
+                                Esto sale del campo 'grupo' de la lista de bienes cuyo codigo
+                                equivale al campo 'grupo' de la lista de movimientos
+                                */
+                                $bienes->where('codigo', '=', $movimiento->bien)->first()->grupo,
+                            )->first()->Nombre }}
+                        </td>
                         <td>{{ $movimiento->ubicacionanterior }}</td>
                         <td>{{ $movimiento->destino }}</td>
-                        <td>{{ $movimiento->nivelurgencia }}</td>                        
-                        
+                        <td>{{ $movimiento->nivelurgencia }}</td>
+
                         <td>
-                            {{-- <form action="{{ url('/movimientos/' . $movimiento->codigo) }}" method="post" class="d-inline">
+                            
+                            <form action="{{ url('/movimientos/' . $movimiento->id) }}" id="{{ $movimiento->id }}"
+                                method="post" class="d-inline">
                                 @csrf
                                 {{ method_field('DELETE') }}
-                                <input type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar"
-                                    class="btn btn-danger">
-
-                            </form> --}}
-
-                            <form action="{{ url('/movimientos/' . $movimiento->id) }}" id="{{$movimiento->id}}" method="post"
-                                class="d-inline">
-                                @csrf
-                                {{ method_field('DELETE') }}
-
                             </form>
-                            <a onclick="return deleteConfirm({{$movimiento->id}})" class="btn">
+                            <a onclick="return deleteConfirm({{ $movimiento->id }})" class="btn">
                                 <i data-feather="trash-2" color="red"></i>
-                            </a>                           
+                            </a>
                         </td>
 
                     </tr>

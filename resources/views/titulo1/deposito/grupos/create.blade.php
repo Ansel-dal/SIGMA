@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
-    <a href="{{ url()->previous() }}" class="nav-link">
+    <a href="{{ url('grupos') }}" class="nav-link">
         <i data-feather="arrow-left"></i>
     </a>
     <div class="container">

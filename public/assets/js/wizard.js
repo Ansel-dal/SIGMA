@@ -1,10 +1,12 @@
-$(function() {
+$(function () {
   'use strict';
 
   $("#wizard").steps({
     headerTag: "h2",
     bodyTag: "section",
-    transitionEffect: "slideLeft"
+    transitionEffect: "slideLeft",
+    onFinished: onWizardFinish,
+    onFinishing: onWizardFinish
   });
 
   $("#wizardVertical").steps({
@@ -13,4 +15,6 @@ $(function() {
     transitionEffect: "slideLeft",
     stepsOrientation: 'vertical'
   });
+
+  
 });

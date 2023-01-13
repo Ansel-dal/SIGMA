@@ -24,6 +24,7 @@ Route::get('/deposito', function () {
     return view('titulo1.deposito');
 })->middleware('auth');
 
+
 Route::get('/pañol', function () {
     return view('titulo1.deposito.pañol.index');
 })->middleware('auth');
@@ -31,13 +32,16 @@ Route::get('/pañol', function () {
 
 
 Route::get('/activos/get/{id}', 'App\Http\Controllers\ActivoController@getbyid');
-
+Route::get('/items/activos', 'App\Http\Controllers\ItemsController@activos');
+Route::get('/items/insumos', 'App\Http\Controllers\ItemsController@insumos');
+Route::get('/items/repuestos', 'App\Http\Controllers\ItemsController@repuestos');
 Route::resource('/activos', App\Http\Controllers\ActivoController::class)->middleware('auth');
 Route::resource('/grupos', App\Http\Controllers\ItemsgroupController::class)->middleware('auth');
 Route::resource('/repuestos', App\Http\Controllers\RepuestoController::class)->middleware('auth');
 Route::resource('/insumos', App\Http\Controllers\InsumoController::class)->middleware('auth');
 Route::resource('/movimientos', App\Http\Controllers\MovimientoController::class)->middleware('auth');
 Route::resource('/operaciones', App\Http\Controllers\OperacionController::class)->middleware('auth');
+Route::resource('/items', App\Http\Controllers\ItemsController::class)->middleware('auth');
 
 Auth::routes();
 

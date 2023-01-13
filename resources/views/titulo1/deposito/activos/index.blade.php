@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
-    <a href="deposito" class="nav-link">
+    <a href="{{ URL::previous() }}" class="nav-link">
         <i data-feather="arrow-left"></i>
     </a>
     <br />

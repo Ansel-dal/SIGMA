@@ -68,7 +68,11 @@
                             </form>
                             <a onclick="return deleteConfirm({{$group->codigo}})" class="btn">
                                 <i data-feather="trash-2" color="red"></i>
-                            </a>                           
+                            </a>                 
+                            {{-- /activos/get/{{$group->codigo}} --}}
+                            <a href="{{url('/activos/get/'.$group->codigo)}}" class="btn">
+                                <i data-feather="info" color="blue"></i>
+                            </a>      
                         </td>
 
                     </tr>

@@ -8,7 +8,7 @@
     <h3 class="page-title">Depósito</h3>
     <p class="lead">Descripción depósito (*)</p>
     <br>
-    <a href="{{ url('activos/create') }}" class="btn btn-success">Agregar items</a>
+    <a href="{{ url('items') }}" class="btn btn-success">Agregar items</a>
     <hr />
 
     <div class="row">
